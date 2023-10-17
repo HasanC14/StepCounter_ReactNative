@@ -35,13 +35,6 @@ const App = () => {
     };
   }, [goal]);
 
-  const handleSetGoal = () => {
-    if (goal && goal > 0) {
-      setStepCount(0);
-      setCongratulate(false);
-    }
-  };
-
   const progress = (stepCount / parseInt(goal, 10)) * 100;
   const color = congratulate ? "green" : "red";
 
@@ -51,17 +44,21 @@ const App = () => {
         <>
           <TextInput
             style={{
-              height: 40,
-              borderColor: "gray",
-              borderWidth: 1,
+              height: 50,
+              width: 200,
+              borderColor: "#ccc",
+              borderWidth: 2,
+              borderRadius: 10,
               marginBottom: 20,
               paddingHorizontal: 10,
+              fontSize: 18,
+              color: "#333",
             }}
             placeholder="Enter step goal"
             keyboardType="numeric"
+            placeholderTextColor="#888"
             onEndEditing={(event) => setGoal(event.nativeEvent.text)}
           />
-          <Button title="Set Goal" onPress={handleSetGoal} />
         </>
       )}
       <Svg height="200" width="200">
