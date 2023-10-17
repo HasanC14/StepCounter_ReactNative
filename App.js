@@ -42,6 +42,7 @@ const App = () => {
     }
   };
 
+  const progress = (stepCount / parseInt(goal, 10)) * 100;
   const color = congratulate ? "green" : "red";
 
   return (
@@ -68,25 +69,53 @@ const App = () => {
           cx="100"
           cy="100"
           r="90"
-          stroke="black"
-          strokeWidth="2"
-          fill={color}
+          fill="none"
+          strokeWidth="10"
+          stroke="#ccc"
+        />
+        <Circle
+          cx="100"
+          cy="100"
+          r="90"
+          fill="none"
+          strokeWidth="10"
+          stroke={color}
+          strokeDasharray={`${progress * 5.65} ${565 - progress * 5.65}`}
         />
         <SvgText
           x="50%"
           y="50%"
           textAnchor="middle"
           fontSize="40"
-          fill="white"
+          fill="black"
           dy="10"
         >
           {stepCount}
         </SvgText>
       </Svg>
       {congratulate && (
-        <Text style={{ fontSize: 20, marginTop: 10, color: "green" }}>
-          Congratulations! You've reached your goal of {goal} steps!
-        </Text>
+        <View>
+          <Text
+            style={{
+              fontSize: 30,
+              marginTop: 10,
+              color: "green",
+              textAlign: "center",
+            }}
+          >
+            Congratulations!
+          </Text>
+          <Text
+            style={{
+              fontSize: 20,
+              marginTop: 10,
+              color: "green",
+              textAlign: "center",
+            }}
+          >
+            You've reached your goal of {goal} steps!
+          </Text>
+        </View>
       )}
     </View>
   );
